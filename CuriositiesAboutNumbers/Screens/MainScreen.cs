@@ -5,7 +5,8 @@ namespace CuriositiesAboutNumbers.Screens
     internal class MainScreen
     {
         private IntParseExceptionHandler intParseExceptionHandler = new IntParseExceptionHandler();
-        private NumberRequest numberRequest = new NumberRequest();
+        private NumberRequest numberRequest;
+        private RandomNumberRequest randomNumberRequest;
         public void mainMenu()
         {
             Console.WriteLine("--------------------------------------------");
@@ -22,15 +23,23 @@ namespace CuriositiesAboutNumbers.Screens
             {
                 case 1:
                     {
-                        Console.WriteLine();
+                        randomNumberRequest = new RandomNumberRequest();
+
+                        Console.WriteLine(randomNumberRequest.requestRandomNumber().Result);
+                        mainMenuFunction();
                     }
                 break;
 
                 case 2:
                     {
+                        numberRequest = new NumberRequest();
+
                         Console.WriteLine("Please, write the number you want to.");
                         int number = intParseExceptionHandler.handleException(Console.ReadLine());
-                        Console.WriteLine(numberRequest.requestNumber(number).Result);
+
+                        if(number != -404)
+                            Console.WriteLine(numberRequest.requestNumber(number).Result);
+                        mainMenuFunction();
                     }
                 break;
 

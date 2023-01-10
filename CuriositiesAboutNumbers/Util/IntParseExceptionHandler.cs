@@ -11,7 +11,7 @@
             catch (Exception e)
             {
                 Console.WriteLine("Please, write a valid number.");
-                return 0;
+                return -404;
             }
         }
     }
